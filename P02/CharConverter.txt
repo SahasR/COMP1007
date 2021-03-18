@@ -1,0 +1,9 @@
+BEGIN CharConverter
+	MAIN:
+		chr <- ASK USER WITH PROMPT "Please enter an uppercase character: "
+		ascii <- CAST chr AS int
+		asciiLowerCase <- acscii + 20
+		chrLowerCase <- CAST asciiLowerCase as char
+		PRINT "The ASCII value of " + chr + " is: " + ascii
+		PRINT "The lowercase value of " + chr + " is: " + chrLowerCase
+	END MAIN
