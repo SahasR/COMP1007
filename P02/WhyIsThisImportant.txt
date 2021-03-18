@@ -1,0 +1,1 @@
+ASCII values is a way in which we are able assign a unique value to characters. 
