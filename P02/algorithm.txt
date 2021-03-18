@@ -1,0 +1,8 @@
+BEGIN TempConverter
+    MAIN:
+        tempCelcius <- ASK USER WITH PROMPT "Please enter the Celcius Temperature"
+        tempFahrenheit <- (tempCelcius * (9 / 5) ) + 32
+        
+        PRINT "The value of " tempCelcius " Celcius is " tempFahrenheit " in Fahrenheit"
+    END MAIN
+END  
