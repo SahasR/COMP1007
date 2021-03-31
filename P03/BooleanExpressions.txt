@@ -1,0 +1,10 @@
+(a) (luca % 2 == 0) && (scott % 2 == 1)
+
+(b) (jane == 'S') || (matthew == 'S')
+
+(c) jane == matthew
+
+(d) (int) sarah == (int) tony
+
+(e) (luke >= 0 ) || ((25.0 <= sarah) && (sarah >= 125.0))
+ 

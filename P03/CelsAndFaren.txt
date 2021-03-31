@@ -1,0 +1,24 @@
+BEGIN CelsAndFaren
+	MAIN:
+		validate = FALSE
+		WHILE NOT validate
+
+			tempScale <- ASK USE WITH PROMPT "What temperature scale are you converting from? (C)elcius or (F)ahrenheit"
+			IF (tempScale = "c") OR (tempScale = "C") OR (tempScale = "f") OR (tempScale = "F") THEN
+				validate = TRUE
+			ELSE
+				OUTPUT "Please Enter Correct Value."
+			ENDIF
+		ENDWHILE
+			
+		IF (tempScale = "c") OR (tempScale = "C") THEN
+			tempCelcius <- ASK USER WITH PROMPT "Enter Celcius Value: "
+			tempFahrenheit = (tempCelcius * (9 / 5)) + 32
+			OUTPUT "The value for " + tempCelcius + " in Fahrenheit is" + tempFahrenheit
+		ELSE
+			tempFahrenheit <- ASK USER WITH PROMPT "Enter Fahrenheit Value: "
+			tempCelcius = (tempFahrenheit - 32) * 5 / 9
+			OUTPUT "The value for " + tempFahrenheit + " in Celcius is" + tempCelcius
+		ENDIF
+	END MAIN
+END

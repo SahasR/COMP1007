@@ -1,0 +1,21 @@
+BEGIN CharConverter
+	MAIN:
+		method <- ASK USER WITH PROMPT "Do you want to convert from lowercase to uppercase (A) or vice versa (B):"
+		chr <- ASK USER WITH PROMPT "Please enter your character: "
+
+		IF method = "A" THEN
+			ascii <- CAST chr AS int
+			asciiLowerCase <- acscii + 32
+			chrLowerCase <- CAST asciiLowerCase as char
+			PRINT "The ASCII value of " + chr + " is: " + ascii
+			PRINT "The lowercase value of " + chr + " is: " + chrLowerCase
+		ELSE
+			ascii <- CAST chr AS int
+			asciiUpperCase <- ascii - 32
+			chrUpperCase <- CAST chrUpperCase as char
+			PRINT "The ASCII value of " + chr " is: " + ascii
+			PRINT "The uppercase value of " + chr + " is: " + chrUpperCase
+		ENDIF
+
+	END MAIN
+END

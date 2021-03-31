@@ -1,0 +1,8 @@
+BEGIN
+    BEGIN MAIN
+        direction <-  PRINT "Please enter the direction you would like to go in (L) left, (R) right, (U) up, (D) down"
+        IF direction = 'l' OR direction = 'L' THEN
+            PRINT "Going West"
+        ELSE    IF direction "r" OR 
+    END MAIN
+END
