@@ -1,0 +1,58 @@
+BEGIN CharConverter
+	MAIN:
+		PRINT "Welcome to Programming Design and Implementation, Workshop 3"
+		
+   
+	
+
+	DO:
+        	
+		DO:
+			PRINT "What would you like to do?"
+        		PRINT "     >1. Sum of 2 Integers"
+       			PRINT "     >2. Product of 2 Integers"
+       			PRINT "     >3. Determine if 2 Integers are Divisible"
+        		PRINT "     >0. Exit"
+
+		
+        		option <- ASK USER WITH PROMPT "Enter number to relevant number to start: "
+		
+			IF option < 0 OR option > 3
+				PRINT "Error: the value must be between 0 and 3"
+			ENDIF
+
+		WHILE choice IS GREATER THAN OR EQUAL 0 AND choice IS LESS THAN OR EQUAL 3	
+			
+		
+        	num1 <- ASK USER WITH PROMPT "Enter First Number: "
+        	num2 <- ASK USER WITH PROMPT "Enter Second Number: "
+		
+
+		IF method = 1 THEN  
+			sum = num1 + num2
+            		PRINT sum
+		ELSE 
+			IF method = 2 THEN
+                		sum = num1 * num2
+                		PRINT sum
+
+			ELSE 
+				IF method = 3 THEN
+                			sum1 = num1 % num2
+                			sum2 = num2 % num1
+				ELSE
+                			IF sum1 = 0 OR sum2 = 0 THEN
+                    				PRINT "Divisible"
+                			ELSE
+               					IF method = 0 THEN
+                					PRINT "Goodbye"
+                				ENDIF
+					ENDIF
+				ENDIF
+			ENDIF
+		ENDIF
+
+	WHILE choice NOT EQUAL to 0
+
+	END MAIN
+END
