@@ -1,0 +1,96 @@
+CLASS Date
+	CLASS FIELDS:
+		day (Integer)
+		month (Integer)
+		year (Integer)
+	
+	CLASS METHODS: 
+		CONSTRUCTOR with PARAMETERS
+		IMPORT: pDay (Integer), pMonth (Integer), pYear (Integer)
+		EXPORT: none
+		ASSERTION: Creating an object with parameters
+		ALGORITHM:
+			day <- pDay
+			month <- pMonth
+			year <- pYear
+
+		COPY CONSTRUCTOR
+		IMPORT: pDate (Date)
+		EXPORT: none
+		ASSERTION: Creating an object with a copied object
+		ALGORITHM:
+			day <- pDate.getDay()
+			month <- pDate.getMonth()
+			year <- pDate.getYear()
+
+		DEFUALT CONSTRUCTOR
+		IMPORT: none
+		EXPORT: none
+		ASSERTION: Creating an object with default object
+		ALGORITHM:
+			day <- 01
+			month <- 01
+			year <- 2000
+	
+		ACCESSOR: getDay
+		IMPORT: none
+		EXPORT: day (Integer)
+		ALGORITHM:
+			RETURN day
+
+		ACCESSOR: getMonth
+		IMPORT:
+		EXPORT: month (Integer)
+		ALGORITHM:	
+			RETURN month
+
+		ACCESSOR: getYear
+		IMPORT:
+		EXPORT: year (Integer)
+		ALGORITHM:
+			RETURN year 
+
+		MUTATOR: setDay
+		IMPORT: pDay (Integer)
+		EXPORT: none
+		ALGORITHM:
+			day <- pDay
+
+		MUTATOR: setMonth
+		IMPORT: pMonth (Integer)
+		EXPORT: none
+		ALGORITHM:
+			month <- pMonth
+
+		MUTATOR: setYear
+		IMPORT: pYear (Integer) 
+		EXPORT: none
+		ALGORITHM:
+			year <- pYear
+
+		METHOD: toString
+		IMPORT: none
+		EXPORT: dataString (String)
+		ASSERTION: Return a string encompassing all attributes of the Data Object
+		ALGORITHM:
+			dataString = day + "/" + month + "/" + year
+
+		METHOD: equals
+		IMPORT: pDate (Object)
+		EXPORT: isEquals (Boolean) 
+		ASSERTION: Will check if its equal to other object
+		ALGORITHM: 
+			isEqual <- FALSE
+			IF pDate IS A Date THEN
+				TRANSFORM pDate TO Date NAMED inDate
+				IF date EQUALS TO inDate.getDate() THEN
+					IF month EQUALS TO inDate.getMonth() THEN
+						IF year EQUALS TO inDate.getYear() THEN
+							isEqual <- TRUE
+						ENDIF
+					ENDIF
+				ENDIF
+			ENDIF
+			RETURN isEqual
+
+END CLASS

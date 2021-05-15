@@ -1,9 +1,6 @@
 BEGIN CharConverter
 	MAIN:
-		PRINT "Welcome to Programming Design and Implementation, Workshop 3"
-		
-   
-	
+		PRINT "Welcome to Programming Design and Implementation, Workshop 3:"
 
 	DO:
         	
@@ -21,7 +18,7 @@ BEGIN CharConverter
 				PRINT "Error: the value must be between 0 and 3"
 			ENDIF
 
-		WHILE choice IS GREATER THAN OR EQUAL 0 AND choice IS LESS THAN OR EQUAL 3	
+		WHILE NOT (choice IS GREATER THAN OR EQUAL 0 AND choice IS LESS THAN OR EQUAL 3)	
 			
 		
         	num1 <- ASK USER WITH PROMPT "Enter First Number: "

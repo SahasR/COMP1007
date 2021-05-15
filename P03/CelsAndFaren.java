@@ -29,7 +29,7 @@ public class CelsAndFaren {
         	celcius = sc.nextInt();
         
         	fahrenheit = (celcius* (9.0/5.0)) + 32.0;
-        
+        	
        		System.out.println("The value of " + celcius + " in Fahrenheit is " + (int) fahrenheit);
 	}
 	else {

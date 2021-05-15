@@ -1,0 +1,19 @@
+BEGIN Matrix
+	BEGIN MAIN
+		row <- ASK USER WITH PROMPT "Enter number of rows"
+		column <- ASK USER WITH PROMPT "Enter number of columns"
+
+		DECLARE ARRAY matrix[x][y] of INTEGER
+
+		FOR x = 0 TO row - 1 CHANGE BY 1
+			FOR y = 0 TO column - 1 CHANGY BY 1
+				matrix[x][y] = x * y
+			END FOR 
+		END FOR 
+		
+		FOR
+			
+		END FOR
+
+	END MAIN
+END

@@ -1,7 +1,10 @@
 BEGIN CharConverter
 	MAIN:
-		method <- ASK USER WITH PROMPT "Do you want to convert from lowercase to uppercase (A) or vice versa (B):"
-		chr <- ASK USER WITH PROMPT "Please enter your character: "
+		DO:
+			method <- ASK USER WITH PROMPT "Do you want to convert from lowercase to uppercase (A) or vice versa (B):"
+			chr <- ASK USER WITH PROMPT "Please enter your character: "
+		
+		WHILE (method NOT EQUAL 'A') AND (method NOT EQUAL 'B')
 
 		IF method = "A" THEN
 			ascii <- CAST chr AS int

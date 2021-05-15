@@ -1,0 +1,10 @@
+1) First error can be seen in line 1 where the boolean found seems to have no purpose in the code as it is not used as a controlling variable for any of the loops or conditionsremoving both instances where the boolean found is used would make no difference to the code as it redundancy
+
+2) numElements = 0 is a redundant piece of code as there is no reason to assign a value to it as we are asking the user to assign a value to it in the immediate line afterwards. Another piece of redundant code.
+
+3) FOR i = 0 TO numElements INC BY 1 is a erroneous line of code as if the index of the array is a 0 based index as the last value 
+of the array will be stored not when the index is numElements but at (NumeElements -1)
+
+4) foundAt = 0 is an inefficient line of code as the value of 0 is assigned to the variable foundAt everytime iteration of the loop, it is much simpler to assign foundAt = 0 (if assigning at all) outside the loop.
+
+5) BREAK is a command we are discouraged to use in this situation. 

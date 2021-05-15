@@ -1,0 +1,159 @@
+CLASS StudentAPP
+
+    DECLARE GLOBAL ARRAY studArray OF Student OF LENGTH 20 
+
+    MAIN
+        menu()
+    END MAIN
+
+    METHOD: menu
+    IMPORT: none
+    EXPORT: none
+    ASSERTION: Displays menu options to user
+    ALGORITHM:
+        DO:
+            OUTPUT "Select an option. "
+            OUTPUT "1. Import student data from CSV. "
+            OUTPUT "2. Calculate test mark average. "
+            OUTPUT "3. View all student data. "
+            OUTPUT "4. Add a new student. "
+            IF LENGTH OF studArray > 0
+                OUTPUT "5. Export all students to file"
+            ENDIF
+            OUTPUT "0. Exit the program. "
+
+            INPUT choice
+
+            CASE choice OF
+                1
+                    importData()
+                2
+                    calculateAverage()
+                3
+                    viewData()
+                4
+                    addStudent()
+                5
+                    writeStudents()
+                DEFAULT
+                    OUTPUT "Entered a wrong value"
+            ENDCASE
+        WHILE (choice NOT EQUAL 0)
+
+    METHOD: importData
+    IMPORT: none
+    EXPORT: none
+    ASSERTION: Imports data from the csv FIELDS
+    ALGORITHM: 
+        theFile <- OPEN example_data.csv
+        lineNum <- 0
+        READ line from theFile
+        WHILE NOT (theFile = EOF)
+            lineNum = lineNum + 1
+            lineParser(line)
+        END WHILE
+        CLOSEFILE theFile
+
+    METHOD: lineParser
+    IMPORT: pLine (STRING)
+    EXPORT: none
+    ASSERTION: Splits the line into individual variables
+    ALGORITHM:
+        valid <- FALSE
+        vName, vStudentID, vMark <- SPLIT pLine
+        CAST vStudentID AS INTEGER
+        CAST vMark AS REAL
+        valid <- checkValidity(vName, vStudentID, vMark)
+        IF valid EQUALS to TRUE
+            constructStudent(vName, vStudentID, vMark)
+        ENDIF
+    
+    METHOD: checkValidity
+    IMPORT: pName (STRING), pStudentID (INTEGER), pMark (REAL)
+    EXPORT: valid (BOOLEAN)
+    ASSERTION: Will check the validity of the values
+    ALGORITHM:
+        IF (pName NOT EQUALS "") AND (pName NOT EQUALS NULL)
+            IF (pStudentID >= 10000000) AND (pStudent <= 99999999)
+                IF (pMark >= 0.0) AND (pMark <= 0.0)
+                    return TRUE
+                ENDIF
+            ENDIF
+        ENDIF
+
+    METHOD: constructStudent
+    IMPORT: pName (STRING), pStudentID (INTEGER), pMark (REAL)
+    ASSERTION: Constructs instances of Student
+    EXPORT:
+        CREATE newStudent <- Student(pName, pStudentID, pMark)
+        ADD newStudent to ARRAY studArray
+
+    METHOD: calculateAverage
+    IMPORT: none
+    EXPORT: none
+    ASSERTION: Calculates the average of the students in the array
+    ALGORITHM:
+        IF LENGTH OF studArray EQUALS TO 0
+            OUTPUT "Array is empty, initialize first"
+        ELSE
+            total <- 0
+            numStudents <- LENGTH of studArray
+
+            FOR EACH students in studArray
+                total <- total + students.getMark
+            ENDFOR
+
+            average <- total / numStudents
+
+            OUTPUT "The average is " + average
+        ENDIF
+
+    METHOD: viewData
+    IMPORT: none
+    EXPORT: none
+    ASSERTION: Print out all data in the array
+    ALGORITHM:
+        IF LENGTH OF studArray EQUALS TO 0
+            OUTPUT "Array is empty, initialize first"
+        ELSE
+            FOR EACH students in studArray
+            OUTPUT students.getName() + " (" + students.getID() + ") scored " + students.getMark()
+            END FOR
+        ENDIF
+
+    METHOD: addStudent
+    IMPORT: none
+    EXPORT: none
+    ASSERTION: Add a new student to the array 
+    ALGORITHM:
+        valid <- FALSE
+        OUTPUT "Enter Student Name: "
+        INPUT vName
+        OUTPUT "Enter StudentID: "
+        INPUT vStudentID
+        OUTPUT "Enter Student Mark: "       
+        INPUT vMark
+        valid <- checkValidity(vName, vStudentID, vMark)
+
+        IF valid EQUALS TO TRUE
+            constructStudent(vName, vStudentID, vMark)
+        ELSE   
+            OUTPUT "User details you entered were wrong"
+        ENDIF
+
+    METHOD: writeStudents
+    IMPORT: none
+    EXPORT: none
+    ASSERTION: Write Students to the file 
+    ALGORITHM:
+        OUTPUT "What is the file name you require to print to?"
+        INPUT fileName
+        TRY:
+            theFile = OPENFILE fileName
+            FOR EACH students in studArray
+                line <- students.getName() + ',' + students.getID() + ',' + students.getMark()
+                WRITE TO theFile line
+            ENDFOR
+        EXCEPT:
+            OUTPUT "File not found"
+END CLASS

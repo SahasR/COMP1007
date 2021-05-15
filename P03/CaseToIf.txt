@@ -3,6 +3,22 @@ BEGIN
         direction <-  PRINT "Please enter the direction you would like to go in (L) left, (R) right, (U) up, (D) down"
         IF direction = 'l' OR direction = 'L' THEN
             PRINT "Going West"
-        ELSE    IF direction "r" OR 
+        ELSE    
+		IF direction = "r" OR direction = "R" THEN
+			PRINT "Going East"
+		ELSE
+			IF direction = 'u' OR direction = 'U' THEN
+				PRINT "Going Up"
+			ELSE
+				IF direction = 'd' OR direction = 'D' THEN
+					PRINT "Going Down"
+				ELSE
+					PRINT "Going Nowhere"
+				END IF
+			END IF
+		END IF
+	END IF
+
+ 
     END MAIN
 END

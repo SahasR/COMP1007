@@ -1,0 +1,139 @@
+BEGIN PondCalculator
+    BEGIN MAIN
+        DECLARE personAnimal ARRAY OF LENGTH 6 OF TYPE STRING
+
+        personAnimal[0][0] <- "Joey"
+        personAnimal[0][1] <- "Sting Rays"
+        personAnimal[0][2] <- "0.5"
+
+        personAnimal[1][0] <- "Joey"
+        personAnimal[1][1] <- "Arowana"
+        personAnimal[1][2] <- "0.4"
+
+        personAnimal[2][0] <- "Cory"
+        personAnimal[2][1] <- "Koi"
+        personAnimal[2][2] <- "0.6"
+
+        personAnimal[3][0] <- "Cory"
+        personAnimal[3][1] <- "Puffer Fish"
+        personAnimal[3][2] <- "0.8"
+
+        personAnimal[4][0] <- "Rachel"
+        personAnimal[4][1] <- "Turtles"
+        personAnimal[4][2] <- "1.2"
+
+        personAnimal[5][0] <- "Rachel"
+        personAnimal[5][1] <- "Frogs"
+        personAnimal[5][2] <- "4.5"
+
+        CALL FUNCTION menu
+
+    END MAIN
+
+    SUBMODULE: menu
+    IMPORT: none
+    EXPORT: choice (INTEGER)
+    ALGORITHM: 
+        DO:
+            DO:
+                OUTPUT "Enter whom to calculate: "
+                OUTPUT " >  Joey: 1"
+                OUTPUT " >  Cory: 2"
+                OUTPUT " >  Rachel: 3"
+                OUTPUT " > exit: 0" 
+                CASE choice OF
+                    1
+                        OUTPUT "You chose Joey"
+                        user <- "Joey"
+                    2
+                        OUTPUT "You chose Cory"
+                        user <- "Cory"
+
+                    3
+                        OUTPUT "You chose Rachel"
+                        user <- "Rachel"
+
+                    0 
+                        OUTPUT "Goodbye"
+
+                    DEFAULT
+                        OUTPUT "Error, enter value from 0 to 3 for your option"
+
+                WHILE choice LESS THAN 0 OR choice GREATER THAN 3
+            END CASE
+
+            IF choice NOT EQUAL 0
+                CALL FUNCTION inputVal(user)
+            END IF
+
+        WHILE NOT choice EQUAL 0
+
+    SUBMODULE: inputVal
+    IMPORT: user (STRING)
+    EXPORT: none
+    ALGORITHM:
+        
+        PRINT "Please enter the dimensions of" + user + "'s pond"
+        PRINT "Enter following values in type: REAL"
+        length <- ASK USER WITH PROMPT "Enter length of pond: "
+        depth <- ASK USER WITH PROMPT "Enter depth of pond: "
+        width <- ASK USER WITH PROMPT "Enter width of pond: "
+        CALL FUNCTION calculateFish(length, depth, width, user)
+        
+    SUBMODULE: calculateFish
+    IMPORT: length (INTEGER), depth (INTEGER), width (INTEGER), user (STRING)
+    EXPORT: none
+    ALGORITHM:
+        volume = length * depth * width
+        density <- CALL FUNCTION chooseFish(user)
+        numFishReal = volume DIV density
+        numFish = TRUNCATE numFishReal TO INTEGER
+
+        CALL FUNCTION printStatement(numFish, user, volume)
+
+    SUBMODULE: chooseFish
+    IMPORT: user (STRING)
+    EXPORT: density (REAL)
+    ALGORITHM:
+        index = 0
+        Found = FALSE
+        DO
+            IF personAnimal[index][0] EQUAL TO user
+                correctFishIndex1 = index
+                correctFishIndex2 = index + 1
+                Found = TRUE
+            ELSE
+                INCREMENT index
+            ENDIF
+        WHILE Found = FALSE
+
+        OUTPUT "Your choices are: "
+        OUTPUT " >" + personAnimal[correctFishIndex1][1] + " (1): "
+        OUTPUT " >" + personAnimal[correctFishIndex2][1] + " (2): "
+        
+        fishChoice <- ASK USER WITH PROMPT "Your Choice: "
+
+        DO
+            CASE fishChoice OF
+                1
+                    OUTPUT "You have chosen" + personAnimal[correctFishIndex1][1] + "fish"
+                    densityStr = personAnimal[correctFishIndex1][2]
+                2
+                    OUTPUT "You have chosen" + personAnimal[correctFishIndex2][1] + "fish"
+                    densityStr = personAnimal[correctFishIndex2][2]
+                DEFAULT
+                    OUTPUT "You can either choose 1 or 2"
+            END CASE
+        WHILE fishChoice LESS THAN 1 OR fishChoice GREATER THAN 2
+
+        density <- CAST densityStr as REAL
+        return density
+
+    SUBMODULE: printStatement
+    IMPORT: numFish (INTEGER), user (STRING), volume (REAL)
+    EXPORT:
+    ALGORITHM:
+        OUTPUT "PROGRAM HAS EXECUTED"
+        OUTPUT user + " can store " + numFish + " in their " + volume + "m^3 pond."
+
+END

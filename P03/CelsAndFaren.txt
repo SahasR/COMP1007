@@ -1,15 +1,10 @@
 BEGIN CelsAndFaren
 	MAIN:
-		validate = FALSE
-		WHILE NOT validate
+		DO: 
 
 			tempScale <- ASK USE WITH PROMPT "What temperature scale are you converting from? (C)elcius or (F)ahrenheit"
-			IF (tempScale = "c") OR (tempScale = "C") OR (tempScale = "f") OR (tempScale = "F") THEN
-				validate = TRUE
-			ELSE
-				OUTPUT "Please Enter Correct Value."
-			ENDIF
-		ENDWHILE
+			
+		WHILE (tempScale NOT EQUAL "c") OR (tempScale NOT EQUAL "C") OR (tempScale NOT EQUAL "f") OR (tempScale NOT EQUAL "F")
 			
 		IF (tempScale = "c") OR (tempScale = "C") THEN
 			tempCelcius <- ASK USER WITH PROMPT "Enter Celcius Value: "

@@ -1,0 +1,7 @@
+1) 
+	a) An object is an instance of a class. Classes have attributes to define them. When an object is created under a class these attributes are inherited.
+	b) A 'Diary' is an object of class 'Book' with attributes 'No of pages', 'Cover type' etc.
+	c) State of the Object is the attribute values of all the attributes of the 
+	d) An object is an instance of a class whereas the class is more of a blueprint of what objects under that class should look like.
+
+

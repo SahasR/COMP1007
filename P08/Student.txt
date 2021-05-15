@@ -1,0 +1,124 @@
+CLASS Student
+	CLASS FIELDS:
+		PRIVATE name (STRING)
+		PRIVATE studentID (INTEGER)
+		PRIVATE mark (REAL)
+	CLASS METHODS:
+		CONSTRUCTOR with PARAMETERS
+		IMPORT: pName (STRING), pStudentID (INTEGER), pMark (REAL)
+		EXPORT: none
+		ASSERTION: Create object with imported values
+		ALGORITHM:
+			name <- pName
+			studentID <- pStudentID
+			mark <- pMark
+
+		DEFAULT CONSTRUCTOR
+		IMPORT: none
+		EXPORT: none
+		ASSERTION: Create object with default values
+		ALGORITHM:I
+			name <- 'default_name'
+			studentID <- -0000000001
+			mark <- -1.0
+
+		COPY CONSTRUCTOR
+		IMPORT: pStudent (OBJECT)
+		EXPORT: none
+		ASSERTION: Imports an already existing object
+			name <- pStudent.getName()
+			studentID <- pStudent.getID()
+			mark <- pStudent.getMark()
+		
+		ACCESSOR: getName
+		IMPORT: none
+		EXPORT: name (STRING)
+		ASSERTION: Access the name attribute of object
+		ALGORITHM:
+			return Mark
+
+		ACCESSOR: getID
+		IMPORT: none
+		EXPORT: studentID (INTEGER)
+		ASSERTION: Access the studentID attribute of object
+		ALGORITHM:
+			return studentID
+
+		MUTATOR: setName
+		IMPORT:	pName (STRING)
+		EXPORT: none
+		ASSERTION: Sets the name of object
+		ALGORITHM:
+			name <- pName
+
+		MUTATOR: setMark
+		IMPORT: pMark (REAL)
+		EXPORT: none
+		ASSERTION: Sets the mark attribute of object
+		ALGORITHM: 
+			mark <- pMark
+
+		MUTATOR: setID
+		IMPORT: pID (INTEGER)
+		EXPORT: none
+		ASSERTION: Sets the ID attribute of object
+		ALGORITHM:
+			studentID <- pID
+
+		ACCESSOR: getMark
+		IMPORT: none
+		EXPORT: mark (REAL)
+		ASSERTION: Access the mark attribute of object
+		ALGORITHM:
+			return mark
+
+		METHOD: toString
+		IMPORT: none
+		EXPORT: studentString (STRING)
+		ASSERTION: Returns a String representation of the object
+		ALGORITHM:
+			studentString <- "The Name is " + name + ", the studentID is " + id + "and the mark is " + mark
+
+		METHOD: equals
+		IMPORT: inObject (OBJECT)
+		EXPORT: isEqual (BOOLEAN)
+		ASSERTION: Returns true if objects are equals
+		ALGORITHM:
+			isEqual <- FALSE
+			IF inObject IS A Student THEN
+				TRANSFORM inObject To Person NAMED inPerson
+				IF name EQUALS TO inPerson.getName() THEN
+					IF studentID EQUALS TO inPerson.getID() THEN
+						IF studentID EQUALS TO inPerson.getGrade()
+							isEqual <- TRUE
+						ENDIF
+					ENDIF
+				ENDIF
+			ENDIF
+
+		METHOD: getGrade
+		IMPORT: none
+		EXPORT: grade (CHAR)
+		ASSERTION: Returns the respective Grade for a mark
+		ALGORITHM:
+			IF Student.getMark() >= 80.0
+				grade <- HD
+			ELSE
+				IF Student.getMark() >= 70.0
+					grade <- D
+				ELSE
+					IF Student.getMark() >= 60.0
+						grade <- C
+					ELSE
+						IF Student.getMark() >= 50.0
+							grade <- P
+						ELSE
+							grade <- F
+						ENDIF
+					ENDIF
+				ENDIF
+			ENDIF
+			return grade
+
+		
+ENDCLASS

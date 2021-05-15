@@ -1,0 +1,10 @@
+BEGIN
+	BEGIN MAIN
+		enteredVal <- PRINT WITH OUTPUT "Enter the number of iterations: "
+		
+		FOR count = 1 TO enteredVal CHANGEBY increment
+			PRINT count
+		END FOR
+	END MAIN
+END
+

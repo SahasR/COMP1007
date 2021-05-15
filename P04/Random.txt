@@ -1,0 +1,19 @@
+BEGIN
+	BEGIN MAIN
+
+	DO
+		arrayLength <- ASK USER WITH PROMPT "Enter length of array: "
+	
+	WHILE NOT arrayLength LESS THAN 21 AND NOT arrayLength GREATER THAN 0 
+	
+		DECLARE randomArray OF INTEGER OF LENGTH arrayLength
+		
+		FOR i = 0 to arrayLength - 1 CHANGEBY 1
+			randomInt <- ASSIGN Random Integer Value 
+			randomArray[i] <- randomInt 
+			
+			OUTPUT "The value of element" + i + " of the array is " + randomArray[i]
+
+		END FOR
+	END MAIN
+END

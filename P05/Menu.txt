@@ -1,0 +1,110 @@
+BEGIN Menu
+	MAIN:
+		PRINT "Welcome to Programming Design and Implementation, Workshop 3:"
+
+		DO: 
+
+			choice <- CALL FUNCTION inputVal()
+
+			IF choice NOT EQUAL 0
+				result <- CALL FUNCTION caseSwitch (choice)
+			ELSE
+				PRINT "Goodbye"
+			END IF
+
+		WHILE CHOICE NOT EQUAL 0
+	
+	END MAIN
+
+	SUBMODULE: inputVal
+	IMPORT: none
+	EXPORT: option
+	ALGORITHM:
+		DO:
+			PRINT "What would you like to do?"
+        		PRINT "     >1. Sum of 2 Integers"
+       			PRINT "     >2. Product of 2 Integers"
+       			PRINT "     >3. Determine if 2 Integers are Divisible"
+        		PRINT "     >0. Exit"
+
+		
+        		option <- ASK USER WITH PROMPT "Enter number to relevant number to start: "
+		
+			IF option < 0 OR option > 3
+				PRINT "Error: the value must be between 0 and 3"
+			ENDIF
+
+		WHILE NOT (choice IS GREATER THAN OR EQUAL 0 AND choice IS LESS THAN OR EQUAL 3)
+		
+
+	SUBMODULE: caseSwitch
+	IMPORT: choice (INTEGER)
+	EXPORT: none
+	ALGORITHM:
+
+		num1 <- ASK USER WITH PROMPT "Enter First Number: "
+		num2 <- ASK USER WITH PROMPT "Enter Second Number: "
+
+		CASE option
+			case 1:
+				 
+				resultInt <- CALL FUNCTION sum2Ints ( num1, num2)
+				CALL FUNCTION printInt (resultInt)
+			
+			case 2: 
+				resultInt <- CALL FUNCTION prod2Ints ( num1, num2)
+				CALL FUNCTION printInt (resultInt)
+			case 3:
+				resultStr <- CALL FUNCTION div2Ints ( num1, num2)
+				CALL FUNCTION printStr (resultStr)
+
+		ENDCASE
+
+
+	SUBMODULE: sum2Ints
+	IMPORT: variableNum1 (INTEGER), variableNum2 (INTEGER)
+	EXPORT: singleVariableOnly (INTEGER)
+	ALGORITHM:
+
+		singleVariableOnly = variableNum1 + variableNum2
+		RETURN singleVariableOnly
+	
+
+
+	SUBMODULE: sum2Ints
+	IMPORT: variableNum1 (INTEGER), variableNum2 (INTEGER)
+	EXPORT: singleVariableOnly (INTEGER)
+	ALGORITHM:
+
+		singleVariableOnly = variableNum1 * variableNum2
+		RETURN singleVariableOnly
+
+
+	SUBMODULE: sum2Ints
+	IMPORT: variableNum1 (INTEGER), variableNum2 (INTEGER)
+	EXPORT:  status (STRING)
+	ALGORITHM:
+		singleVariable1 = variableNum1 MOD variableNum2
+		singleVariable2 = variableNum2 MOD variableNum1
+
+		IF singleVariable1 IS EQUAL 0 OR singleVariable2 IS EQUAL 0
+			status <- "Divisible"
+		ELSE
+			status <- "Not Divisible"
+		END IF	
+
+		RETURN status
+
+	SUBMODULE: printInt
+	IMPORT: finalResult (INTEGER)
+	EXPORT: 
+	ALGORITHM:
+		PRINT finalResult
+
+	SUBMODULE: printStr
+	IMPORT: finalResult (STRING)
+	EXPORT: 
+	ALGORITHM:
+		PRINT finalResult
+
+END
